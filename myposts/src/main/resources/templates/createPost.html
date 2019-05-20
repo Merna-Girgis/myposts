@@ -1,0 +1,41 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link rel="stylesheet" type="text/css" href="app.css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<script>
+function ClearTextArea() {
+    document.getElementById("content").value = "";
+}
+</script>
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<h1>What's on your mind?</h1>
+			<form action="/savePost" method="POST">
+				<div class="form-group">
+					<textarea rows="2" class="form-control" name="content"></textarea>
+				</div>
+				<div class="form-check">
+					<input class="form-check-input" type="checkbox" value="" name = "publicPost"
+						id="defaultCheck1"> <label class="form-check-label"
+						for="defaultCheck1"> Do you want to make it public post?
+					</label>
+				</div>
+
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary"  onclick="ClearTextArea();">Create</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<div class="col-md-12" th:each="post: ${posts}">
+		<p th:text="${post.content}"></p>
+		 <span class="badge"th:text="${post.dateCreated}"></span>
+	    <hr>
+	</div>
+	<hr>
+</div>
